@@ -28,32 +28,22 @@ for the entire game should live, `room.py`, which will contain the definition of
 the Room class, and `player.py`, which will contain the definition of the Player
 class.
 
--   Put the Room class in `room.py` based on what you see in `adv.py`.
-
--   Put the Player class in `player.py`.
-
--   Create a file called `item.py` and add an `Item` class in there.
-
-    -   This will be the _base class_ for specialized item types to be declared
-        later.
-
-    -   The item should have `name` and `description` attributes.
-
-        -   Hint: the name should be one word for ease in parsing later.
-
--   Add the ability to add items to rooms.
-
-    -   The `Room` class should be extended with a `list` that holds the `Item`s
-        that are currently in that room.
-
-    -   Add functionality to the main loop that prints out all the items that
-        are visible to the player when they are in that room.
+-   Put the Room class in `room.py` based on what you see in `adv.py`. DONE
+-   Put the Player class in `player.py`. DONE
+-   Create a file called `item.py` and add an `Item` class in there. DONE - This
+    will be the _base class_ for specialized item types to be declared later.
+    DONE - The item should have `name` and `description` attributes. DONE -
+    Hint: the name should be one word for ease in parsing later. DONE
+-   Add the ability to add items to rooms. DONE - The `Room` class should be
+    extended with a `list` that holds the `Item`s that are currently in that
+    room. DONE - Add functionality to the main loop that prints out all the
+    items that are visible to the player when they are in that room. DONE
 
 -   Add capability to add `Item`s to the player's inventory. The inventory can
     also be a `list` of items "in" the player, similar to how `Item`s can be in
-    a `Room`.
+    a `Room`. DONE
 
--   Add a new type of sentence the parser can understand: two words.
+-   Add a new type of sentence the parser can understand: two words. DONE
 
     -   Until now, the parser could just understand one sentence form:
 
@@ -68,28 +58,29 @@ class.
         such as "take coins" or "drop sword".
 
     -   Split the entered command and see if it has 1 or 2 words in it to
-        determine if it's the first or second form.
+        determine if it's the first or second form. DONE
 
 -   Implement support for the verb `get` followed by an `Item` name. This will
-    be used to pick up `Item`s.
+    be used to pick up `Item`s. DONE
 
     -   If the user enters `get` or `take` followed by an `Item` name, look at
-        the contents of the current `Room` to see if the item is there.
+        the contents of the current `Room` to see if the item is there. DONE
 
         -   If it is there, remove it from the `Room` contents, and add it to
-            the `Player` contents.
+            the `Player` contents. DONE
 
-        -   If it's not there, print an error message telling the user so.
+        -   If it's not there, print an error message telling the user so. DONE
 
-        -   Add an `on_take` method to `Item`.
+        -   Add an `on_take` method to `Item`. DONE
 
             -   Call this method when the `Item` is picked up by the player.
+                DONE
 
             -   The `Item` can use this to run additional code when it is picked
-                up.
+                up. OK
 
         -   Add an `on_drop` method to `Item`. Implement it similar to
-            `on_take`.
+            `on_take`. DONE
 
 -   Implement support for the verb `drop` followed by an `Item` name. This is
     the opposite of `get`/`take`.
