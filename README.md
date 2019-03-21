@@ -83,10 +83,10 @@ class.
             `on_take`. DONE
 
 -   Implement support for the verb `drop` followed by an `Item` name. This is
-    the opposite of `get`/`take`.
+    the opposite of `get`/`take`. DONE
 
 -   Add the `i` and `inventory` commands that both show a list of items
-    currently carried by the player.
+    currently carried by the player. DONE
 
 ## Stretch Goals
 
@@ -171,4 +171,4 @@ In arbitrary order:
 -   Similar to the `on_take` return value modification, above, have `on_attack`
     prevent the attack from succeeding unless the user possesses a `sword` item.
 
--   Come up with more stretch goals! The sky's the limit!
+-   Come up with more stretch goals! The sky's the limit! DONE

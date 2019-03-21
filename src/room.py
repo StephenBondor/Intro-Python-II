@@ -3,10 +3,13 @@
 
 
 class Room:
-    def __init__(self, name, description, items=[]):  # constructor
+    def __init__(self, name, description, items=None):  # constructor
         self.name = name
         self.description = description
-        self.items = items
+        if items == None:
+            self.items = []
+        else:
+            self.items = items
         self.n_to = None
         self.s_to = None
         self.e_to = None
