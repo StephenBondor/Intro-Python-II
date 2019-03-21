@@ -1,172 +1,174 @@
 # Intro to Python II
 
-Up to this point, you've gotten your feet wet by working on a bunch of small Python programs. In this module, we're going to continue to solidify your Python chops by implementing a full-featured project according to a provided specification. 
+Up to this point, you've gotten your feet wet by working on a bunch of small
+Python programs. In this module, we're going to continue to solidify your Python
+chops by implementing a full-featured project according to a provided
+specification.
 
 ## Goals
 
-* Solidify the Python basics by implementing a text adventure game
-* Get more comfortable writing code that conforms to an (imperfect) specification
+-   Solidify the Python basics by implementing a text adventure game
+-   Get more comfortable writing code that conforms to an (imperfect)
+    specification
 
 ## Tasks
 
-* Add classes for rooms and the player
-* Add a simple parser that reads user input and performs actions
-* Add items to the game that the user can carry around
-* Make rooms able to hold multiple items
-* Make the player able to carry multiple items
-* Add two-word commands to the parser
-* Add the `get` and `drop` commands to the parser
+-   Add classes for rooms and the player
+-   Add a simple parser that reads user input and performs actions
+-   Add items to the game that the user can carry around
+-   Make rooms able to hold multiple items
+-   Make the player able to carry multiple items
+-   Add two-word commands to the parser
+-   Add the `get` and `drop` commands to the parser
 
 ## Specification
 
-The `/src` directory contains the files `adv.py`, which is where the main logic for the entire game should live, `room.py`, which will contain the definition of the Room class, and `player.py`, which will contain the definition of the Player class. 
+The `/src` directory contains the files `adv.py`, which is where the main logic
+for the entire game should live, `room.py`, which will contain the definition of
+the Room class, and `player.py`, which will contain the definition of the Player
+class.
 
-* Put the Room class in `room.py` based on what you see in `adv.py`.
+-   Put the Room class in `room.py` based on what you see in `adv.py`. DONE
+-   Put the Player class in `player.py`. DONE
+-   Create a file called `item.py` and add an `Item` class in there. DONE - This
+    will be the _base class_ for specialized item types to be declared later.
+    DONE - The item should have `name` and `description` attributes. DONE -
+    Hint: the name should be one word for ease in parsing later. DONE
+-   Add the ability to add items to rooms. DONE - The `Room` class should be
+    extended with a `list` that holds the `Item`s that are currently in that
+    room. DONE - Add functionality to the main loop that prints out all the
+    items that are visible to the player when they are in that room. DONE
 
-* Put the Player class in `player.py`.
+-   Add capability to add `Item`s to the player's inventory. The inventory can
+    also be a `list` of items "in" the player, similar to how `Item`s can be in
+    a `Room`. DONE
 
-* Create a file called `item.py` and add an `Item` class in there.
+-   Add a new type of sentence the parser can understand: two words. DONE
 
-  * This will be the _base class_ for specialized item types to be declared
-    later.
+    -   Until now, the parser could just understand one sentence form:
 
-  * The item should have `name` and `description` attributes.
+        `verb`
 
-     * Hint: the name should be one word for ease in parsing later.
+        such as "n" or "q".
 
-* Add the ability to add items to rooms.
+    -   But now we want to add the form:
 
-  * The `Room` class should be extended with a `list` that holds the `Item`s
-    that are currently in that room.
+        `verb` `object`
 
-  * Add functionality to the main loop that prints out all the items that are
-    visible to the player when they are in that room.
+        such as "take coins" or "drop sword".
 
-* Add capability to add `Item`s to the player's inventory. The inventory can
-  also be a `list` of items "in" the player, similar to how `Item`s can be in a
-  `Room`.
+    -   Split the entered command and see if it has 1 or 2 words in it to
+        determine if it's the first or second form. DONE
 
-* Add a new type of sentence the parser can understand: two words.
+-   Implement support for the verb `get` followed by an `Item` name. This will
+    be used to pick up `Item`s. DONE
 
-  * Until now, the parser could just understand one sentence form:
+    -   If the user enters `get` or `take` followed by an `Item` name, look at
+        the contents of the current `Room` to see if the item is there. DONE
 
-     `verb`
+        -   If it is there, remove it from the `Room` contents, and add it to
+            the `Player` contents. DONE
 
-    such as "n" or "q".
+        -   If it's not there, print an error message telling the user so. DONE
 
-  * But now we want to add the form:
+        -   Add an `on_take` method to `Item`. DONE
 
-    `verb` `object`
+            -   Call this method when the `Item` is picked up by the player.
+                DONE
 
-    such as "take coins" or "drop sword".
+            -   The `Item` can use this to run additional code when it is picked
+                up. OK
 
-  * Split the entered command and see if it has 1 or 2 words in it to determine
-    if it's the first or second form.
+        -   Add an `on_drop` method to `Item`. Implement it similar to
+            `on_take`. DONE
 
-* Implement support for the verb `get` followed by an `Item` name. This will be
-  used to pick up `Item`s.
+-   Implement support for the verb `drop` followed by an `Item` name. This is
+    the opposite of `get`/`take`.
 
-  * If the user enters `get` or `take` followed by an `Item` name, look at the
-    contents of the current `Room` to see if the item is there.
-
-     * If it is there, remove it from the `Room` contents, and add it to the
-       `Player` contents.
-
-     * If it's not there, print an error message telling the user so.
-
-     * Add an `on_take` method to `Item`. 
-
-        * Call this method when the `Item` is picked up by the player.
-
-        * The `Item` can use this to run additional code when it is picked up.
-
-     * Add an `on_drop` method to `Item`. Implement it similar to `on_take`.
-
-* Implement support for the verb `drop` followed by an `Item` name. This is the
-  opposite of `get`/`take`.
-
-* Add the `i` and `inventory` commands that both show a list of items currently
-  carried by the player.
-
+-   Add the `i` and `inventory` commands that both show a list of items
+    currently carried by the player.
 
 ## Stretch Goals
 
 In arbitrary order:
 
-* Add more rooms
+-   Add more rooms
 
-* Add scoring
+-   Add scoring
 
-* Subclass items into treasures
+-   Subclass items into treasures
 
-* Add a subclass to `Item` called `LightSource`.
+-   Add a subclass to `Item` called `LightSource`.
 
-  * During world creation, add a `lamp` `LightSource` to a convenient `Room`.
+    -   During world creation, add a `lamp` `LightSource` to a convenient
+        `Room`.
 
-  * Override `on_drop` in `LightSource` that tells the player "It's not wise to
-  drop your source of light!" if the player drops it. (But still lets them drop
-  it.)
+    -   Override `on_drop` in `LightSource` that tells the player "It's not wise
+        to drop your source of light!" if the player drops it. (But still lets
+        them drop it.)
 
-  * Add an attribute to `Room` called `is_light` that is `True` if the `Room` is
-  naturally illuminated, or `False` if a `LightSource` is required to see what
-  is in the room.
+    -   Add an attribute to `Room` called `is_light` that is `True` if the
+        `Room` is naturally illuminated, or `False` if a `LightSource` is
+        required to see what is in the room.
 
-  * Modify the main loop to test if there is light in the `Room` (i.e. if
-    `is_light` is `True` **or** there is a `LightSource` item in the `Room`'s
-    contents **or** if there is a `LightSource` item in the `Player`'s contents).
+    -   Modify the main loop to test if there is light in the `Room` (i.e. if
+        `is_light` is `True` **or** there is a `LightSource` item in the
+        `Room`'s contents **or** if there is a `LightSource` item in the
+        `Player`'s contents).
 
-  * If there is light in the room, display name, description, and contents as
-    normal.
+    -   If there is light in the room, display name, description, and contents
+        as normal.
 
-  * If there isn't, print out "It's pitch black!" instead.
+    -   If there isn't, print out "It's pitch black!" instead.
 
-  * Hint: `isinstance` might help you figure out if there's a `LightSource`
-    among all the nearby `Item`s.
+    -   Hint: `isinstance` might help you figure out if there's a `LightSource`
+        among all the nearby `Item`s.
 
-  * Modify the `get`/`take` code to print "Good luck finding that in the dark!" if
-  the user tries to pick up an `Item` in the dark.
+    -   Modify the `get`/`take` code to print "Good luck finding that in the
+        dark!" if the user tries to pick up an `Item` in the dark.
 
-* Add methods to notify items when they are picked up or dropped
+-   Add methods to notify items when they are picked up or dropped
 
-* Add light and darkness to the game
+-   Add light and darkness to the game
 
-* Add more items to the game.
+-   Add more items to the game.
 
-* Add a way to win.
+-   Add a way to win.
 
-* Add more to the parser.
+-   Add more to the parser.
 
-  * Remember the last `Item` mentioned and substitute that if the user types
-    "it" later, e.g.
+    -   Remember the last `Item` mentioned and substitute that if the user types
+        "it" later, e.g.
 
-    ```
-    take sword
-    drop it
-    ```
+        ```
+        take sword
+        drop it
+        ```
 
-  * Add `Item`s with adjectives, like "rusty sword" and "silver sword".
+    -   Add `Item`s with adjectives, like "rusty sword" and "silver sword".
 
-    * Modify the parser to handle commands like "take rusty sword" as well as
-      "take sword".
+        -   Modify the parser to handle commands like "take rusty sword" as well
+            as "take sword".
 
-      * If the user is in a room that contains both the rusty sword _and_ silver
-        sword, and they type "take sword", the parser should say, "I don't know
-        which you mean: rusty sword or silver sword."
+            -   If the user is in a room that contains both the rusty sword
+                _and_ silver sword, and they type "take sword", the parser
+                should say, "I don't know which you mean: rusty sword or silver
+                sword."
 
-* Modify the code that calls `on_take` to check the return value. If `on_take`
-  returns `False`, then don't continue picking up the object. (I.e. prevent the
-  user from picking it up.)
+-   Modify the code that calls `on_take` to check the return value. If `on_take`
+    returns `False`, then don't continue picking up the object. (I.e. prevent
+    the user from picking it up.)
 
-  * This enables you to add logic to `on_take` to code things like "don't allow
-    the user to pick up the dirt unless they're holding the shovel.
+    -   This enables you to add logic to `on_take` to code things like "don't
+        allow the user to pick up the dirt unless they're holding the shovel.
 
-* Add monsters.
+-   Add monsters.
 
-* Add the `attack` verb that allows you to specify a monster to attack.
+-   Add the `attack` verb that allows you to specify a monster to attack.
 
-* Add an `on_attack` method to the monster class.
+-   Add an `on_attack` method to the monster class.
 
-* Similar to the `on_take` return value modification, above, have `on_attack`
-  prevent the attack from succeeding unless the user possesses a `sword` item.
+-   Similar to the `on_take` return value modification, above, have `on_attack`
+    prevent the attack from succeeding unless the user possesses a `sword` item.
 
-* Come up with more stretch goals! The sky's the limit!
+-   Come up with more stretch goals! The sky's the limit!
