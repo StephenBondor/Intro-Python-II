@@ -61,55 +61,19 @@ while True:
     user_input = input(
         "Enter an action, or don't, ultimately, you'll be talking to the manager (inspectnails for help): ").split(' ')
     if len(user_input) == 1:
-        if user_input == ["y"]:
+        if user_input[0] == "y":
             print("Can I talk to your manager?")
-        if user_input == ["q"]:
-            print(f'{player1.name} could not find the manager. Goodbye')
+        if user_input[0] == "q":
+            print(f'{player1.name} could not find the manager. Goodbye.')
             break
-        if user_input == ["n"]:
-            if player1.location.n_to != None:
-                player1.location = player1.location.n_to
-            else:
-                print("Sorry, no manager in that direction")
-        if user_input == ["e"]:
-            if player1.location.e_to != None:
-                player1.location = player1.location.e_to
-            else:
-                print("Sorry, no manager in that direction")
-        if user_input == ["s"]:
-            if player1.location.s_to != None:
-                player1.location = player1.location.s_to
-            else:
-                print("Sorry, no manager in that direction")
-        if user_input == ["w"]:
-            if player1.location.w_to != None:
-                player1.location = player1.location.w_to
-            else:
-                print("Sorry, no manager in that direction")
-        if user_input == ["l"]:
-            print(f'Looks for manager, sees: ')
-            i = 0
-            for item in player1.location.items:
-                print(f'{i}: {item}')
-                i = + 1
-        if user_input == ["metime"]:
-            print(f'{player1.name} is ~super~ important, she has: ')
-            i = 0
-            for item in player1.items:
-                print(f'{i}: {item}')
-                i = + 1
+        if user_input[0] == "n" or user_input[0] == "s" or user_input[0] == "e" or user_input[0] == "w":
+            player1.move_to(user_input[0])
+        if user_input[0] == "l":
+            player1.look_around()
+        if user_input[0] == "metime":
+            player1.me_time()
     elif len(user_input) == 2:
         if user_input[0] == "g":
-            if len(player1.location.items) > int(user_input[1]) and int(user_input[1]) >= 0:
-                item = player1.location.items.pop(int(user_input[1]))
-                item.on_take()
-                player1.items.append(item)
-            else:
-                print("We seriously need to find the manager, this is not OK")
+            player1.get_item(int(user_input[1]))
         if user_input[0] == "t":
-            if len(player1.items) > int(user_input[1]) and int(user_input[1]) >= 0:
-                item = player1.items.pop(int(user_input[1]))
-                item.on_drop()
-                player1.location.items.append(item)
-            else:
-                print("We seriously need to find the manager, this is not OK")
+            player1.trash_item(int(user_input[1]))
